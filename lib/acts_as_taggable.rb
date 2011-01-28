@@ -89,6 +89,7 @@ AND #{Tagging.table_name}.tag_id = #{Tag.table_name}.id",
         end
 
         def tag_list(user = nil)
+          return @new_tag_list if @new_tag_list
           unless user
             result = tags.collect { |tag| tag.name.include?(" ") ? %("#{tag.name}") : tag.name }.join(" ")
           else
