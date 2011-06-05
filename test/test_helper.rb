@@ -1,6 +1,12 @@
 ENV["RAILS_ENV"] = "test"
-require File.expand_path(File.dirname(__FILE__) + "/../../../../config/environment")
-require 'test_help'
+
+#why does this need an environment?  We should load AR directly
+#require 'rails'
+#require 'active_record'
+#require 'active_support'
+#require 'active_support/core_ext' 
+require File.expand_path("~/newap/config/environment")
+require 'rails/test_help'
 require 'test/unit'
 
 require File.dirname(__FILE__) + '/../lib/acts_as_taggable'
@@ -13,10 +19,25 @@ ActiveRecord::Base.establish_connection(ENV['DB'] || 'mysql')
 
 load(File.dirname(__FILE__) + '/schema.rb')
 
-Test::Unit::TestCase.fixture_path = File.dirname(__FILE__) + '/fixtures/'
-$LOAD_PATH.unshift(Test::Unit::TestCase.fixture_path)
+#this has moved
+#Test::Unit::TestCase.fixture_path = File.dirname(__FILE__) + '/fixtures/'
+ActiveSupport::TestCase.fixture_path = File.dirname(__FILE__) + '/fixtures/' 
+$LOAD_PATH.unshift(ActiveSupport::TestCase.fixture_path)
 
-class Test::Unit::TestCase
+class ActiveSupport::TestCase
+  #some no-longer-there way of accessing fixtures by label somehow?  these functions don't work, i can't get tests to run
+  def things(sym)
+    Things.find(:name => sym)
+  end
+    
+  def tags(sym)
+    Tags.find(:name => sym)
+  end
+  
+  def taggings(sym)
+    Taggings.find(:name => sym)
+  end    
+  
   # Transactional fixtures accelerate your tests by wrapping each test method
   # in a transaction that's rolled back on completion.  This ensures that the
   # test database remains unchanged so your fixtures don't have to be reloaded

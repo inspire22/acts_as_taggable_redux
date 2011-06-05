@@ -102,3 +102,256 @@
   [4;36;1mTagging Load (0.000216)[0m   [0;1mSELECT * FROM taggings WHERE (taggings."id" = 1) [0m
   [4;35;1mThing Load (0.000168)[0m   [0mSELECT * FROM things WHERE (things."id" = 1) [0m
   [4;36;1mThing Load (0.000159)[0m   [0;1mSELECT * FROM things WHERE (things."id" = 2) [0m
+  [1m[36mSQL (39.3ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (218.3ms)[0m  CREATE TABLE `tags` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `taggings_count` int(11) DEFAULT 0 NOT NULL) ENGINE=InnoDB
+  [1m[36mSQL (0.7ms)[0m  [1mSHOW KEYS FROM `tags`[0m
+  [1m[35mSQL (295.2ms)[0m  CREATE INDEX `index_tags_on_name` ON `tags` (`name`)
+  [1m[36mSQL (0.7ms)[0m  [1mSHOW KEYS FROM `tags`[0m
+  [1m[35mSQL (156.4ms)[0m  CREATE INDEX `index_tags_on_taggings_count` ON `tags` (`taggings_count`)
+  [1m[36mSQL (0.6ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (79.8ms)[0m  CREATE TABLE `taggings` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `tag_id` int(11), `taggable_id` int(11), `taggable_type` varchar(255), `user_id` int(11)) ENGINE=InnoDB
+  [1m[36mSQL (0.6ms)[0m  [1mSHOW KEYS FROM `taggings`[0m
+  [1m[35mSQL (159.4ms)[0m  CREATE INDEX `index_taggings_on_tag_id_and_taggable_type` ON `taggings` (`tag_id`, `taggable_type`)
+  [1m[36mSQL (0.6ms)[0m  [1mSHOW KEYS FROM `taggings`[0m
+  [1m[35mSQL (115.7ms)[0m  CREATE INDEX `index_taggings_on_user_id_and_tag_id_and_taggable_type` ON `taggings` (`user_id`, `tag_id`, `taggable_type`)
+  [1m[36mSQL (0.6ms)[0m  [1mSHOW KEYS FROM `taggings`[0m
+  [1m[35mSQL (80.2ms)[0m  CREATE INDEX `index_taggings_on_taggable_id_and_taggable_type` ON `taggings` (`taggable_id`, `taggable_type`)
+  [1m[36mSQL (0.6ms)[0m  [1mSHOW KEYS FROM `taggings`[0m
+  [1m[35mSQL (110.8ms)[0m  CREATE INDEX `index_taggings_on_user_id_and_taggable_id_and_taggable_type` ON `taggings` (`user_id`, `taggable_id`, `taggable_type`)
+  [1m[36mSQL (0.4ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (107.2ms)[0m  CREATE TABLE `things` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255)) ENGINE=InnoDB
+  [1m[36mSQL (0.8ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (109.8ms)[0m  CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `username` varchar(255)) ENGINE=InnoDB
+  [1m[36mSQL (0.5ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (109.7ms)[0m  CREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB
+  [1m[36mSQL (0.5ms)[0m  [1mSHOW KEYS FROM `schema_migrations`[0m
+  [1m[35mSQL (113.2ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)
+  [1m[36mSQL (0.5ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.3ms)[0m  SELECT version FROM `schema_migrations`
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('0')[0m
+  SQL (0.4ms)  SHOW TABLES
+  SQL (1.1ms)  DROP TABLE `tags`
+  SQL (117.3ms)  CREATE TABLE `tags` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `taggings_count` int(11) DEFAULT 0 NOT NULL) ENGINE=InnoDB
+  SQL (0.5ms)  SHOW KEYS FROM `tags`
+  SQL (177.7ms)  CREATE INDEX `index_tags_on_name` ON `tags` (`name`)
+  SQL (0.5ms)  SHOW KEYS FROM `tags`
+  SQL (98.4ms)  CREATE INDEX `index_tags_on_taggings_count` ON `tags` (`taggings_count`)
+  SQL (0.5ms)  SHOW TABLES
+  SQL (2.4ms)  DROP TABLE `taggings`
+  SQL (93.8ms)  CREATE TABLE `taggings` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `tag_id` int(11), `taggable_id` int(11), `taggable_type` varchar(255), `user_id` int(11)) ENGINE=InnoDB
+  SQL (0.6ms)  SHOW KEYS FROM `taggings`
+  SQL (113.5ms)  CREATE INDEX `index_taggings_on_tag_id_and_taggable_type` ON `taggings` (`tag_id`, `taggable_type`)
+  SQL (0.6ms)  SHOW KEYS FROM `taggings`
+  SQL (88.1ms)  CREATE INDEX `index_taggings_on_user_id_and_tag_id_and_taggable_type` ON `taggings` (`user_id`, `tag_id`, `taggable_type`)
+  SQL (0.5ms)  SHOW KEYS FROM `taggings`
+  SQL (98.7ms)  CREATE INDEX `index_taggings_on_taggable_id_and_taggable_type` ON `taggings` (`taggable_id`, `taggable_type`)
+  SQL (0.5ms)  SHOW KEYS FROM `taggings`
+  SQL (111.7ms)  CREATE INDEX `index_taggings_on_user_id_and_taggable_id_and_taggable_type` ON `taggings` (`user_id`, `taggable_id`, `taggable_type`)
+  SQL (15.0ms)  SHOW TABLES
+  SQL (2.2ms)  DROP TABLE `things`
+  SQL (184.5ms)  CREATE TABLE `things` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255)) ENGINE=InnoDB
+  SQL (0.6ms)  SHOW TABLES
+  SQL (281.5ms)  DROP TABLE `users`
+  SQL (166.7ms)  CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `username` varchar(255)) ENGINE=InnoDB
+  SQL (0.5ms)  SHOW TABLES
+  SQL (0.2ms)  SELECT version FROM `schema_migrations`
+  SQL (0.4ms)  SHOW TABLES
+  SQL (28.4ms)  DROP TABLE `tags`
+  SQL (80.8ms)  CREATE TABLE `tags` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `taggings_count` int(11) DEFAULT 0 NOT NULL) ENGINE=InnoDB
+  SQL (0.6ms)  SHOW KEYS FROM `tags`
+  SQL (208.9ms)  CREATE INDEX `index_tags_on_name` ON `tags` (`name`)
+  SQL (0.6ms)  SHOW KEYS FROM `tags`
+  SQL (110.8ms)  CREATE INDEX `index_tags_on_taggings_count` ON `tags` (`taggings_count`)
+  SQL (0.7ms)  SHOW TABLES
+  SQL (2.2ms)  DROP TABLE `taggings`
+  SQL (116.0ms)  CREATE TABLE `taggings` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `tag_id` int(11), `taggable_id` int(11), `taggable_type` varchar(255), `user_id` int(11)) ENGINE=InnoDB
+  SQL (0.6ms)  SHOW KEYS FROM `taggings`
+  SQL (113.8ms)  CREATE INDEX `index_taggings_on_tag_id_and_taggable_type` ON `taggings` (`tag_id`, `taggable_type`)
+  SQL (0.7ms)  SHOW KEYS FROM `taggings`
+  SQL (109.8ms)  CREATE INDEX `index_taggings_on_user_id_and_tag_id_and_taggable_type` ON `taggings` (`user_id`, `tag_id`, `taggable_type`)
+  SQL (0.6ms)  SHOW KEYS FROM `taggings`
+  SQL (108.7ms)  CREATE INDEX `index_taggings_on_taggable_id_and_taggable_type` ON `taggings` (`taggable_id`, `taggable_type`)
+  SQL (0.7ms)  SHOW KEYS FROM `taggings`
+  SQL (110.1ms)  CREATE INDEX `index_taggings_on_user_id_and_taggable_id_and_taggable_type` ON `taggings` (`user_id`, `taggable_id`, `taggable_type`)
+  SQL (0.5ms)  SHOW TABLES
+  SQL (1.4ms)  DROP TABLE `things`
+  SQL (106.1ms)  CREATE TABLE `things` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255)) ENGINE=InnoDB
+  SQL (0.5ms)  SHOW TABLES
+  SQL (1.5ms)  DROP TABLE `users`
+  SQL (107.9ms)  CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `username` varchar(255)) ENGINE=InnoDB
+  SQL (1.0ms)  SHOW TABLES
+  SQL (0.2ms)  SELECT version FROM `schema_migrations`
+  SQL (0.4ms)  SHOW TABLES
+  SQL (1.1ms)  DROP TABLE `tags`
+  SQL (116.1ms)  CREATE TABLE `tags` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `taggings_count` int(11) DEFAULT 0 NOT NULL) ENGINE=InnoDB
+  SQL (0.5ms)  SHOW KEYS FROM `tags`
+  SQL (158.0ms)  CREATE INDEX `index_tags_on_name` ON `tags` (`name`)
+  SQL (1.3ms)  SHOW KEYS FROM `tags`
+  SQL (91.5ms)  CREATE INDEX `index_tags_on_taggings_count` ON `tags` (`taggings_count`)
+  SQL (0.6ms)  SHOW TABLES
+  SQL (2.1ms)  DROP TABLE `taggings`
+  SQL (93.8ms)  CREATE TABLE `taggings` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `tag_id` int(11), `taggable_id` int(11), `taggable_type` varchar(255), `user_id` int(11)) ENGINE=InnoDB
+  SQL (0.5ms)  SHOW KEYS FROM `taggings`
+  SQL (102.6ms)  CREATE INDEX `index_taggings_on_tag_id_and_taggable_type` ON `taggings` (`tag_id`, `taggable_type`)
+  SQL (0.5ms)  SHOW KEYS FROM `taggings`
+  SQL (100.8ms)  CREATE INDEX `index_taggings_on_user_id_and_tag_id_and_taggable_type` ON `taggings` (`user_id`, `tag_id`, `taggable_type`)
+  SQL (0.6ms)  SHOW KEYS FROM `taggings`
+  SQL (121.6ms)  CREATE INDEX `index_taggings_on_taggable_id_and_taggable_type` ON `taggings` (`taggable_id`, `taggable_type`)
+  SQL (0.6ms)  SHOW KEYS FROM `taggings`
+  SQL (110.7ms)  CREATE INDEX `index_taggings_on_user_id_and_taggable_id_and_taggable_type` ON `taggings` (`user_id`, `taggable_id`, `taggable_type`)
+  SQL (0.6ms)  SHOW TABLES
+  SQL (1.3ms)  DROP TABLE `things`
+  SQL (106.0ms)  CREATE TABLE `things` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255)) ENGINE=InnoDB
+  SQL (0.6ms)  SHOW TABLES
+  SQL (1.4ms)  DROP TABLE `users`
+  SQL (108.5ms)  CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `username` varchar(255)) ENGINE=InnoDB
+  SQL (0.6ms)  SHOW TABLES
+  SQL (0.2ms)  SELECT version FROM `schema_migrations`
+  SQL (0.7ms)  SHOW TABLES
+  SQL (1.3ms)  DROP TABLE `tags`
+  SQL (118.3ms)  CREATE TABLE `tags` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `taggings_count` int(11) DEFAULT 0 NOT NULL) ENGINE=InnoDB
+  SQL (0.6ms)  SHOW KEYS FROM `tags`
+  SQL (94.7ms)  CREATE INDEX `index_tags_on_name` ON `tags` (`name`)
+  SQL (0.5ms)  SHOW KEYS FROM `tags`
+  SQL (112.9ms)  CREATE INDEX `index_tags_on_taggings_count` ON `tags` (`taggings_count`)
+  SQL (0.7ms)  SHOW TABLES
+  SQL (1.5ms)  DROP TABLE `taggings`
+  SQL (104.7ms)  CREATE TABLE `taggings` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `tag_id` int(11), `taggable_id` int(11), `taggable_type` varchar(255), `user_id` int(11)) ENGINE=InnoDB
+  SQL (0.7ms)  SHOW KEYS FROM `taggings`
+  SQL (138.2ms)  CREATE INDEX `index_taggings_on_tag_id_and_taggable_type` ON `taggings` (`tag_id`, `taggable_type`)
+  SQL (0.5ms)  SHOW KEYS FROM `taggings`
+  SQL (108.2ms)  CREATE INDEX `index_taggings_on_user_id_and_tag_id_and_taggable_type` ON `taggings` (`user_id`, `tag_id`, `taggable_type`)
+  SQL (0.6ms)  SHOW KEYS FROM `taggings`
+  SQL (112.0ms)  CREATE INDEX `index_taggings_on_taggable_id_and_taggable_type` ON `taggings` (`taggable_id`, `taggable_type`)
+  SQL (0.5ms)  SHOW KEYS FROM `taggings`
+  SQL (86.0ms)  CREATE INDEX `index_taggings_on_user_id_and_taggable_id_and_taggable_type` ON `taggings` (`user_id`, `taggable_id`, `taggable_type`)
+  SQL (0.8ms)  SHOW TABLES
+  SQL (1.8ms)  DROP TABLE `things`
+  SQL (82.2ms)  CREATE TABLE `things` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255)) ENGINE=InnoDB
+  SQL (0.5ms)  SHOW TABLES
+  SQL (1.3ms)  DROP TABLE `users`
+  SQL (98.7ms)  CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `username` varchar(255)) ENGINE=InnoDB
+  SQL (0.6ms)  SHOW TABLES
+  SQL (0.2ms)  SELECT version FROM `schema_migrations`
+  SQL (0.4ms)  SHOW TABLES
+  SQL (1.1ms)  DROP TABLE `tags`
+  SQL (104.1ms)  CREATE TABLE `tags` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `taggings_count` int(11) DEFAULT 0 NOT NULL) ENGINE=InnoDB
+  SQL (0.7ms)  SHOW KEYS FROM `tags`
+  SQL (155.7ms)  CREATE INDEX `index_tags_on_name` ON `tags` (`name`)
+  SQL (0.5ms)  SHOW KEYS FROM `tags`
+  SQL (121.1ms)  CREATE INDEX `index_tags_on_taggings_count` ON `tags` (`taggings_count`)
+  SQL (0.7ms)  SHOW TABLES
+  SQL (1.5ms)  DROP TABLE `taggings`
+  SQL (119.1ms)  CREATE TABLE `taggings` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `tag_id` int(11), `taggable_id` int(11), `taggable_type` varchar(255), `user_id` int(11)) ENGINE=InnoDB
+  SQL (0.6ms)  SHOW KEYS FROM `taggings`
+  SQL (75.0ms)  CREATE INDEX `index_taggings_on_tag_id_and_taggable_type` ON `taggings` (`tag_id`, `taggable_type`)
+  SQL (0.5ms)  SHOW KEYS FROM `taggings`
+  SQL (113.1ms)  CREATE INDEX `index_taggings_on_user_id_and_tag_id_and_taggable_type` ON `taggings` (`user_id`, `tag_id`, `taggable_type`)
+  SQL (0.6ms)  SHOW KEYS FROM `taggings`
+  SQL (110.3ms)  CREATE INDEX `index_taggings_on_taggable_id_and_taggable_type` ON `taggings` (`taggable_id`, `taggable_type`)
+  SQL (0.6ms)  SHOW KEYS FROM `taggings`
+  SQL (100.0ms)  CREATE INDEX `index_taggings_on_user_id_and_taggable_id_and_taggable_type` ON `taggings` (`user_id`, `taggable_id`, `taggable_type`)
+  SQL (0.5ms)  SHOW TABLES
+  SQL (1.2ms)  DROP TABLE `things`
+  SQL (82.6ms)  CREATE TABLE `things` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255)) ENGINE=InnoDB
+  SQL (0.5ms)  SHOW TABLES
+  SQL (1.2ms)  DROP TABLE `users`
+  SQL (86.8ms)  CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `username` varchar(255)) ENGINE=InnoDB
+  SQL (0.5ms)  SHOW TABLES
+  SQL (0.2ms)  SELECT version FROM `schema_migrations`
+  SQL (0.4ms)  SHOW TABLES
+  SQL (1.1ms)  DROP TABLE `tags`
+  SQL (87.2ms)  CREATE TABLE `tags` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `taggings_count` int(11) DEFAULT 0 NOT NULL) ENGINE=InnoDB
+  SQL (0.5ms)  SHOW KEYS FROM `tags`
+  SQL (154.7ms)  CREATE INDEX `index_tags_on_name` ON `tags` (`name`)
+  SQL (0.5ms)  SHOW KEYS FROM `tags`
+  SQL (110.5ms)  CREATE INDEX `index_tags_on_taggings_count` ON `tags` (`taggings_count`)
+  SQL (1.0ms)  SHOW TABLES
+  SQL (3.0ms)  DROP TABLE `taggings`
+  SQL (89.4ms)  CREATE TABLE `taggings` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `tag_id` int(11), `taggable_id` int(11), `taggable_type` varchar(255), `user_id` int(11)) ENGINE=InnoDB
+  SQL (0.6ms)  SHOW KEYS FROM `taggings`
+  SQL (157.2ms)  CREATE INDEX `index_taggings_on_tag_id_and_taggable_type` ON `taggings` (`tag_id`, `taggable_type`)
+  SQL (1.0ms)  SHOW KEYS FROM `taggings`
+  SQL (135.4ms)  CREATE INDEX `index_taggings_on_user_id_and_tag_id_and_taggable_type` ON `taggings` (`user_id`, `tag_id`, `taggable_type`)
+  SQL (0.6ms)  SHOW KEYS FROM `taggings`
+  SQL (98.7ms)  CREATE INDEX `index_taggings_on_taggable_id_and_taggable_type` ON `taggings` (`taggable_id`, `taggable_type`)
+  SQL (0.6ms)  SHOW KEYS FROM `taggings`
+  SQL (100.5ms)  CREATE INDEX `index_taggings_on_user_id_and_taggable_id_and_taggable_type` ON `taggings` (`user_id`, `taggable_id`, `taggable_type`)
+  SQL (0.5ms)  SHOW TABLES
+  SQL (1.7ms)  DROP TABLE `things`
+  SQL (91.6ms)  CREATE TABLE `things` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255)) ENGINE=InnoDB
+  SQL (0.5ms)  SHOW TABLES
+  SQL (1.1ms)  DROP TABLE `users`
+  SQL (86.5ms)  CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `username` varchar(255)) ENGINE=InnoDB
+  SQL (0.5ms)  SHOW TABLES
+  SQL (0.3ms)  SELECT version FROM `schema_migrations`
+  SQL (2.0ms)  describe `list_users`
+Mysql::Error: Table 'rails_plugin_test.list_users' doesn't exist: describe `list_users`
+  SQL (1.3ms)  describe `ignores`
+Mysql::Error: Table 'rails_plugin_test.ignores' doesn't exist: describe `ignores`
+  SQL (1.2ms)  describe `ignores`
+Mysql::Error: Table 'rails_plugin_test.ignores' doesn't exist: describe `ignores`
+  SQL (0.4ms)  SHOW TABLES
+  SQL (1.2ms)  DROP TABLE `tags`
+  SQL (104.1ms)  CREATE TABLE `tags` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `taggings_count` int(11) DEFAULT 0 NOT NULL) ENGINE=InnoDB
+  SQL (0.5ms)  SHOW KEYS FROM `tags`
+  SQL (134.8ms)  CREATE INDEX `index_tags_on_name` ON `tags` (`name`)
+  SQL (0.5ms)  SHOW KEYS FROM `tags`
+  SQL (110.3ms)  CREATE INDEX `index_tags_on_taggings_count` ON `tags` (`taggings_count`)
+  SQL (0.5ms)  SHOW TABLES
+  SQL (1.9ms)  DROP TABLE `taggings`
+  SQL (93.1ms)  CREATE TABLE `taggings` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `tag_id` int(11), `taggable_id` int(11), `taggable_type` varchar(255), `user_id` int(11)) ENGINE=InnoDB
+  SQL (0.6ms)  SHOW KEYS FROM `taggings`
+  SQL (101.2ms)  CREATE INDEX `index_taggings_on_tag_id_and_taggable_type` ON `taggings` (`tag_id`, `taggable_type`)
+  SQL (0.7ms)  SHOW KEYS FROM `taggings`
+  SQL (110.3ms)  CREATE INDEX `index_taggings_on_user_id_and_tag_id_and_taggable_type` ON `taggings` (`user_id`, `tag_id`, `taggable_type`)
+  SQL (0.6ms)  SHOW KEYS FROM `taggings`
+  SQL (88.0ms)  CREATE INDEX `index_taggings_on_taggable_id_and_taggable_type` ON `taggings` (`taggable_id`, `taggable_type`)
+  SQL (0.5ms)  SHOW KEYS FROM `taggings`
+  SQL (87.7ms)  CREATE INDEX `index_taggings_on_user_id_and_taggable_id_and_taggable_type` ON `taggings` (`user_id`, `taggable_id`, `taggable_type`)
+  SQL (0.5ms)  SHOW TABLES
+  SQL (1.3ms)  DROP TABLE `things`
+  SQL (84.8ms)  CREATE TABLE `things` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255)) ENGINE=InnoDB
+  SQL (0.5ms)  SHOW TABLES
+  SQL (1.8ms)  DROP TABLE `users`
+  SQL (84.5ms)  CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `username` varchar(255)) ENGINE=InnoDB
+  SQL (0.6ms)  SHOW TABLES
+  SQL (0.4ms)  SELECT version FROM `schema_migrations`
+  SQL (1.3ms)  describe `list_users`
+Mysql::Error: Table 'rails_plugin_test.list_users' doesn't exist: describe `list_users`
+  SQL (1.3ms)  describe `ignores`
+Mysql::Error: Table 'rails_plugin_test.ignores' doesn't exist: describe `ignores`
+  SQL (1.2ms)  describe `ignores`
+Mysql::Error: Table 'rails_plugin_test.ignores' doesn't exist: describe `ignores`
+  SQL (0.4ms)  SHOW TABLES
+  SQL (1.2ms)  DROP TABLE `tags`
+  SQL (123.5ms)  CREATE TABLE `tags` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `taggings_count` int(11) DEFAULT 0 NOT NULL) ENGINE=InnoDB
+  SQL (0.6ms)  SHOW KEYS FROM `tags`
+  SQL (187.1ms)  CREATE INDEX `index_tags_on_name` ON `tags` (`name`)
+  SQL (0.6ms)  SHOW KEYS FROM `tags`
+  SQL (107.3ms)  CREATE INDEX `index_tags_on_taggings_count` ON `tags` (`taggings_count`)
+  SQL (0.5ms)  SHOW TABLES
+  SQL (1.6ms)  DROP TABLE `taggings`
+  SQL (80.2ms)  CREATE TABLE `taggings` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `tag_id` int(11), `taggable_id` int(11), `taggable_type` varchar(255), `user_id` int(11)) ENGINE=InnoDB
+  SQL (0.6ms)  SHOW KEYS FROM `taggings`
+  SQL (112.4ms)  CREATE INDEX `index_taggings_on_tag_id_and_taggable_type` ON `taggings` (`tag_id`, `taggable_type`)
+  SQL (0.5ms)  SHOW KEYS FROM `taggings`
+  SQL (112.3ms)  CREATE INDEX `index_taggings_on_user_id_and_tag_id_and_taggable_type` ON `taggings` (`user_id`, `tag_id`, `taggable_type`)
+  SQL (0.6ms)  SHOW KEYS FROM `taggings`
+  SQL (88.5ms)  CREATE INDEX `index_taggings_on_taggable_id_and_taggable_type` ON `taggings` (`taggable_id`, `taggable_type`)
+  SQL (0.6ms)  SHOW KEYS FROM `taggings`
+  SQL (87.9ms)  CREATE INDEX `index_taggings_on_user_id_and_taggable_id_and_taggable_type` ON `taggings` (`user_id`, `taggable_id`, `taggable_type`)
+  SQL (0.5ms)  SHOW TABLES
+  SQL (1.4ms)  DROP TABLE `things`
+  SQL (82.8ms)  CREATE TABLE `things` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255)) ENGINE=InnoDB
+  SQL (0.6ms)  SHOW TABLES
+  SQL (1.4ms)  DROP TABLE `users`
+  SQL (85.9ms)  CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `username` varchar(255)) ENGINE=InnoDB
+  SQL (0.6ms)  SHOW TABLES
+  SQL (0.2ms)  SELECT version FROM `schema_migrations`
+  SQL (1.6ms)  describe `list_users`
+Mysql::Error: Table 'rails_plugin_test.list_users' doesn't exist: describe `list_users`
+  SQL (1.2ms)  describe `ignores`
+Mysql::Error: Table 'rails_plugin_test.ignores' doesn't exist: describe `ignores`
+  SQL (1.3ms)  describe `ignores`
+Mysql::Error: Table 'rails_plugin_test.ignores' doesn't exist: describe `ignores`
